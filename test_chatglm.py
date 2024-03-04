@@ -1,6 +1,9 @@
 from langchain.chains import LLMChain
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
+import dotenv
+
+dotenv.load_dotenv()
 
 template = """{question}"""
 prompt = PromptTemplate(template=template, input_variables=["question"])
