@@ -5,25 +5,18 @@ from operator import itemgetter
 from typing import List, Optional, Sequence, Tuple, Union
 from uuid import UUID
 
+import dotenv
 from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-# from langchain.callbacks.manager import CallbackManagerForRetrieverRun
-from langchain_openai import ChatOpenAI
-# from langchain.document_loaders import AsyncHtmlLoader
-# from langchain.document_transformers import Html2TextTransformer
-from langchain_community.embeddings import OpenAIEmbeddings
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder, PromptTemplate
-from langchain.retrievers import (
-    ContextualCompressionRetriever,
-)
-from langchain_community.retrievers import TavilySearchAPIRetriever
+from langchain.retrievers import ContextualCompressionRetriever
 from langchain.retrievers.document_compressors import (
     DocumentCompressorPipeline,
     EmbeddingsFilter,
 )
+
 # from langchain.retrievers.kay import KayAiRetriever
 # from langchain.retrievers.you import YouRetriever
-from langchain.schema import Document
 from langchain.schema.document import Document
 from langchain.schema.language_model import BaseLanguageModel
 from langchain.schema.messages import AIMessage, HumanMessage
@@ -38,12 +31,22 @@ from langchain.schema.runnable import (
 )
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
+# from langchain.document_loaders import AsyncHtmlLoader
+# from langchain.document_transformers import Html2TextTransformer
+from langchain_community.embeddings import OpenAIEmbeddings
+from langchain_community.retrievers import TavilySearchAPIRetriever
+
+# from langchain.callbacks.manager import CallbackManagerForRetrieverRun
+from langchain_openai import ChatOpenAI
+
 # Backup
 # from langchain_community.utilities import GoogleSearchAPIWrapper
 from langserve import add_routes
 from pydantic import BaseModel, Field
+
 from utils_langchain.retriever_utils import get_embedding_func
 
+dotenv.load_dotenv()
 
 EN_PROMPT = False
 if EN_PROMPT:
