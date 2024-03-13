@@ -1,6 +1,6 @@
 #!/usr/bin/zsh
-export OPENAI_API_KEY=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
-export TAVILY_API_KEY=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
+export OPENAI_API_KEY=
+export TAVILY_API_KEY=
 
 # for Anthropic
 # remove models from code if unused
